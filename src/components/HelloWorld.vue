@@ -26,15 +26,30 @@
       <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
+      <el-button>{{test}}</el-button>
     </ul>
   </div>
 </template>
 
 <script>
+import API from "../api/axios"
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data(){
+    return {
+      test: ''
+    }
+  },
+  mounted() {
+    API({
+      url: "/getTest",
+      method: "get"
+    }).then(res =>{
+      this.test = res.data
+    })
   }
 }
 </script>
